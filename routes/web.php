@@ -9,10 +9,13 @@ use App\Http\Controllers\Admin\WarungController as AdminWarung;
 use App\Http\Controllers\Admin\ProdukController as AdminProduk;
 use App\Http\Controllers\Admin\UserController as AdminPegawai;
 
+//Atasan
+
+use App\Http\Controllers\Atasan\AtasanController as Atasan;
+
 
 //Tiket
 use App\Http\Controllers\PegawaiTiketController as PegawaiTiket;
-
 //Kasir
 use App\Http\Controllers\PegawaiKasirController as PegawaiKasir;
 
@@ -36,9 +39,10 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
 	//Atasan cekRole:0
 	Route::group(['middleware' => ['auth:sanctum', 'cekRole:0']], function () {
 		Route::prefix('atasan/')->group(function () {
-			Route::get('', function () {
-				return view('layouts.master');
-			})->name('atasanDashboard');
+			route::controller(Atasan::class)->group(function () {
+				route::get('', 'penjualan')->name('atasanDashboard');
+				route::get('tiket-parkir', 'rekapTP')->name('rekapTP');
+			});
 		});
 	});
 

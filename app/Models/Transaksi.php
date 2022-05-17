@@ -15,4 +15,14 @@ class Transaksi extends Model
 		'kode',
 		'total',
 	];
+
+	public function warung()
+	{
+		return $this->belongsTo('App\Models\Warung', 'idWarung', 'id');
+	}
+
+	public function details()
+	{
+		return $this->hasMany('App\Models\DetailTransaksi', 'idTransaksi', 'id');
+	}
 }

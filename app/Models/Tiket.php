@@ -18,4 +18,10 @@ class Tiket extends Model
 		'hargaParkir',
 		'totalBayar'
 	];
+
+
+	public function details()
+	{
+		return $this->hasMany('App\Models\DetailTiket', 'idTiket', 'id');
+	}
 }
