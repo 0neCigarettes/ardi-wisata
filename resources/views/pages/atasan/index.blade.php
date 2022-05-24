@@ -3,6 +3,8 @@
 <section class="section">
 	<div class="row">
 		<div class="col-12">
+			{{$keuntungan}}
+			{{$totalModal}}
 			<div class="card">
 				<div class="card-body">
 					<div class="row">
@@ -83,6 +85,18 @@
 										<th class="text-center"></th>
 										<th class="text-center"></th>
 									</tr>
+									<tr>
+										<th colspan="2">Total Modal {{$namaWarung ? $namaWarung->nama : '' }} {{$query['tanggalAwal'] ?? ''}} {{!empty($query['tanggalAkhir']) ? ' - '.$query['tanggalAkhir'] : ''}}</th>
+										<th class="text-center">: Rp.{{number_format($totalModal, 0,'.','.')}}</th>
+										<th class="text-center"></th>
+										<th class="text-center"></th>
+									</tr>
+									<tr>
+										<th colspan="2">Total Keuntungan {{$namaWarung ? $namaWarung->nama : '' }} {{$query['tanggalAwal'] ?? ''}} {{!empty($query['tanggalAkhir']) ? ' - '.$query['tanggalAkhir'] : ''}}</th>
+										<th class="text-center">: Rp.{{number_format($keuntungan, 0,'.','.')}}</th>
+										<th class="text-center"></th>
+										<th class="text-center"></th>
+									</tr>
 							</tbody><!-- End Table with stripped rows -->
 						</table>
 						{{ $data->appends($query)->links() }}
@@ -106,10 +120,13 @@
 								<tr>
 									<th scope="col">Nama_Produk</th>
 									<th class="text-center" scope="col">Harga</th>
+									<th class="text-center" scope="col">Modal</th>
 									<th class="text-center" scope="col">Jumlah_Beli</th>
 									<th class="text-center" scope="col">SubTotal</th>
 									<th class="text-center" scope="col">Potongan</th>
 									<th class="text-center" scope="col">Total</th>
+									<th class="text-center" scope="col">Total_Modal</th>
+									<th class="text-center" scope="col">Keuntungan</th>
 								</tr>
 							</thead>
 							<tbody id="detailTableBody">
@@ -136,10 +153,13 @@
 			content += `<tr>
 										<td>${r.namaProduk}</td>
 										<td class="text-center">Rp.${formatRp(r.harga)}</td>
+										<td class="text-center">Rp.${formatRp(r.modal)}</td>
 										<td class="text-center">${r.jumlahBeli}</td>
 										<td class="text-center">Rp.${formatRp(r.harga * r.jumlahBeli)}</td>
-										<td class="text-center">${r.diskon}% (Rp.${formatRp((r.harga - r.hargaDiskon) * r.jumlahBeli)})</td>
+										<td class="text-center">${r.adaDiskon === 1 ? r.diskon : 0}% (Rp.${formatRp(r.adaDiskon === 1 ? (r.harga - r.hargaDiskon) * r.jumlahBeli : 0)})</td>
 										<td class="text-center">Rp.${formatRp(r.adaDiskon === 1 ? r.hargaDiskon * r.jumlahBeli : r.harga * r.jumlahBeli)}</td>
+										<td class="text-center">Rp.${formatRp(r.modal * r.jumlahBeli)}</td>
+										<td class="text-center">Rp.${formatRp((r.adaDiskon === 1 ? r.hargaDiskon * r.jumlahBeli : r.harga * r.jumlahBeli) - (r.modal * r.jumlahBeli))}</td>
 									</tr>`;
 		}
 		contents.append(content);

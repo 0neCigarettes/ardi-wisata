@@ -48,6 +48,16 @@ class AtasanController extends Controller
 
 		$namaWarung = \App\Models\Warung::where('id', $idWarung)->first();
 		$totalFilter = $data->sum('total');
+		$counterModal = $data->get();
+		$totalModal = 0;
+
+		foreach ($counterModal as $d) {
+			foreach ($d->details as $detail) {
+				$totalModal += $detail->modal * $detail->jumlahBeli;
+			}
+		}
+
+		$keuntungan = $totalFilter - $totalModal;
 
 		$allData = \App\Models\Transaksi::all();
 		$totalAll = 0;
@@ -59,6 +69,8 @@ class AtasanController extends Controller
 			'data' => $data->paginate(12)->appends($request->query()),
 			'totalFilter' => $totalFilter,
 			'totalAll' => $totalAll,
+			'totalModal' => $totalModal,
+			'keuntungan' => $keuntungan,
 			'query' => $request->query(),
 			'warung' => \App\Models\Warung::Select('id', 'nama', 'kode')->get(),
 			'namaWarung' => $namaWarung,
@@ -118,7 +130,7 @@ class AtasanController extends Controller
 	private function getDataByRangeDate($eloquent, $startDate, $endDate)
 	{
 		if ($startDate && $endDate) {
-			$eloquent->whereBetween('created_at', [$startDate, $endDate]);
+			$eloquent->whereDate('created_at', '>=', $startDate)->whereDate('created_at', '<=', $endDate);
 		}
 		return $eloquent;
 	}

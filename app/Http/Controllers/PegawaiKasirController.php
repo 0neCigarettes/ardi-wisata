@@ -71,6 +71,7 @@ class PegawaiKasirController extends Controller
 					'idTransaksi' => $createTransaksi->id,
 					'namaProduk' => $produk->nama,
 					'harga' => $produk->harga,
+					'modal' => $produk->modal,
 					'diskon' => $produk->diskon,
 					'jumlahBeli' => (int)$b['jumlahBeli'],
 					'adaDiskon' => $produk->adaPromo,

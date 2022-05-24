@@ -26,13 +26,17 @@ class AppServiceProvider extends ServiceProvider
 	public function boot()
 	{
 		Paginator::useBootstrapFive();
+		Paginator::useBootstrapFour();
 
-		view()->composer('*', function ($view) {
-			$idWarung = Auth::user()->idWarung ?? 0;
-			$warung = \App\Models\Warung::Where('id', '=', $idWarung)->first();
+		view()->composer(
+			'*',
+			function ($view) {
+				$idWarung = Auth::user()->idWarung ?? 0;
+				$warung = \App\Models\Warung::Where('id', '=', $idWarung)->first();
 
-			//...with this variable
-			$view->with('warungKasir', $warung);
-		});
+				//...with this variable
+				$view->with('warungKasir', $warung);
+			}
+		);
 	}
 }

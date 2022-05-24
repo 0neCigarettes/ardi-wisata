@@ -16,6 +16,7 @@ class Produk extends Model
 		'nama',
 		'jumlahSatuan',
 		'harga',
+		'modal',
 		'diskon',
 		'expiredPromo',
 		'stok',

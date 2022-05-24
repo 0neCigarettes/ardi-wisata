@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 27, 2022 at 12:00 AM
+-- Generation Time: May 24, 2022 at 02:14 PM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 8.0.12
 
@@ -121,7 +121,13 @@ INSERT INTO `detail_tikets` (`id`, `idTiket`, `jenisTiket`, `jumlahBeli`, `adaDi
 (514, 345, 'Anak-anak', 1, 1, 10, 13500, 15000, '2022-04-25 13:01:47', '2022-04-25 13:01:47'),
 (515, 346, 'Anak-anak', 2, 1, 10, 13500, 15000, '2022-04-25 13:01:54', '2022-04-25 13:01:54'),
 (516, 346, 'Anak-anak', 2, 1, 10, 13500, 15000, '2022-04-25 13:01:54', '2022-04-25 13:01:54'),
-(517, 346, 'Anak-anak', 1, 1, 10, 13500, 15000, '2022-04-25 13:01:54', '2022-04-25 13:01:54');
+(517, 346, 'Anak-anak', 1, 1, 10, 13500, 15000, '2022-04-25 13:01:54', '2022-04-25 13:01:54'),
+(518, 347, 'Anak-anak', 1, 0, 10, 13500, 15000, '2022-04-26 22:28:21', '2022-04-26 22:28:21'),
+(519, 348, 'Anak-anak', 1, 0, 10, 13500, 15000, '2022-04-26 22:30:09', '2022-04-26 22:30:09'),
+(520, 349, 'Anak-anak', 1, 0, 10, 13500, 15000, '2022-04-26 22:30:20', '2022-04-26 22:30:20'),
+(521, 350, 'Anak-anak', 1, 0, 10, 13500, 15000, '2022-04-26 22:30:36', '2022-04-26 22:30:36'),
+(522, 351, 'Anak-anak', 1, 0, 10, 13500, 15000, '2022-04-26 22:30:55', '2022-04-26 22:30:55'),
+(523, 352, 'Anak-anak', 1, 0, 10, 13500, 15000, '2022-04-26 22:31:06', '2022-04-26 22:31:06');
 
 -- --------------------------------------------------------
 
@@ -134,6 +140,7 @@ CREATE TABLE `detail_transaksi` (
   `idTransaksi` bigint(20) NOT NULL,
   `namaProduk` varchar(100) NOT NULL,
   `harga` double NOT NULL,
+  `modal` double NOT NULL DEFAULT 0,
   `diskon` tinyint(3) NOT NULL,
   `jumlahBeli` int(3) NOT NULL,
   `adaDiskon` tinyint(1) NOT NULL,
@@ -146,23 +153,26 @@ CREATE TABLE `detail_transaksi` (
 -- Dumping data for table `detail_transaksi`
 --
 
-INSERT INTO `detail_transaksi` (`id`, `idTransaksi`, `namaProduk`, `harga`, `diskon`, `jumlahBeli`, `adaDiskon`, `hargaDiskon`, `created_at`, `updated_at`) VALUES
-(1, 2, 'baju dewasa', 20000, 10, 2, 1, 18000, '2022-04-26 20:07:06', '2022-04-26 20:07:06'),
-(2, 3, 'baju dewasa', 20000, 10, 2, 1, 18000, '2022-04-26 20:11:28', '2022-04-26 20:11:28'),
-(3, 4, 'baju dewasa', 20000, 10, 2, 1, 18000, '2022-04-26 20:12:12', '2022-04-26 20:12:12'),
-(4, 5, 'baju dewasa', 20000, 10, 2, 1, 18000, '2022-04-26 20:13:33', '2022-04-26 20:13:33'),
-(5, 6, 'baju dewasa', 20000, 10, 2, 1, 18000, '2022-04-26 20:14:21', '2022-04-26 20:14:21'),
-(6, 7, 'baju dewasa', 20000, 10, 2, 1, 18000, '2022-04-26 20:14:32', '2022-04-26 20:14:32'),
-(7, 8, 'baju dewasa', 20000, 10, 2, 1, 18000, '2022-04-26 20:14:56', '2022-04-26 20:14:56'),
-(8, 9, 'baju dewasa', 20000, 10, 2, 1, 18000, '2022-04-26 20:15:04', '2022-04-26 20:15:04'),
-(9, 10, 'baju anak', 45000, 0, 2, 0, 45000, '2022-04-26 20:16:04', '2022-04-26 20:16:04'),
-(10, 11, 'baju anak', 45000, 0, 2, 0, 45000, '2022-04-26 20:16:30', '2022-04-26 20:16:30'),
-(11, 11, 'baju dewasa', 20000, 10, 1, 1, 18000, '2022-04-26 20:16:30', '2022-04-26 20:16:30'),
-(12, 12, 'baju anak', 45000, 0, 2, 0, 45000, '2022-04-26 20:16:54', '2022-04-26 20:16:54'),
-(13, 12, 'baju dewasa', 20000, 10, 1, 1, 18000, '2022-04-26 20:16:54', '2022-04-26 20:16:54'),
-(14, 13, 'baju anak', 45000, 0, 2, 0, 45000, '2022-04-26 20:17:18', '2022-04-26 20:17:18'),
-(15, 13, 'baju dewasa', 20000, 10, 1, 1, 18000, '2022-04-26 20:17:18', '2022-04-26 20:17:18'),
-(16, 13, 'baju dewasa', 20000, 10, 2, 1, 18000, '2022-04-26 20:17:18', '2022-04-26 20:17:18');
+INSERT INTO `detail_transaksi` (`id`, `idTransaksi`, `namaProduk`, `harga`, `modal`, `diskon`, `jumlahBeli`, `adaDiskon`, `hargaDiskon`, `created_at`, `updated_at`) VALUES
+(1, 2, 'baju dewasa', 20000, 0, 10, 2, 1, 18000, '2022-04-26 20:07:06', '2022-04-26 20:07:06'),
+(2, 3, 'baju dewasa', 20000, 0, 10, 2, 1, 18000, '2022-04-26 20:11:28', '2022-04-26 20:11:28'),
+(3, 4, 'baju dewasa', 20000, 0, 10, 2, 1, 18000, '2022-04-26 20:12:12', '2022-04-26 20:12:12'),
+(4, 5, 'baju dewasa', 20000, 0, 10, 2, 1, 18000, '2022-04-26 20:13:33', '2022-04-26 20:13:33'),
+(5, 6, 'baju dewasa', 20000, 0, 10, 2, 1, 18000, '2022-04-26 20:14:21', '2022-04-26 20:14:21'),
+(6, 7, 'baju dewasa', 20000, 0, 10, 2, 1, 18000, '2022-04-26 20:14:32', '2022-04-26 20:14:32'),
+(7, 8, 'baju dewasa', 20000, 0, 10, 2, 1, 18000, '2022-04-26 20:14:56', '2022-04-26 20:14:56'),
+(8, 9, 'baju dewasa', 20000, 0, 10, 2, 1, 18000, '2022-04-26 20:15:04', '2022-04-26 20:15:04'),
+(9, 10, 'baju anak', 45000, 0, 0, 2, 0, 45000, '2022-04-26 20:16:04', '2022-04-26 20:16:04'),
+(10, 11, 'baju anak', 45000, 0, 0, 2, 0, 45000, '2022-04-26 20:16:30', '2022-04-26 20:16:30'),
+(11, 11, 'baju dewasa', 20000, 0, 10, 1, 1, 18000, '2022-04-26 20:16:30', '2022-04-26 20:16:30'),
+(12, 12, 'baju anak', 45000, 0, 0, 2, 0, 45000, '2022-04-26 20:16:54', '2022-04-26 20:16:54'),
+(13, 12, 'baju dewasa', 20000, 0, 10, 1, 1, 18000, '2022-04-26 20:16:54', '2022-04-26 20:16:54'),
+(14, 13, 'baju anak', 45000, 0, 0, 2, 0, 45000, '2022-04-26 20:17:18', '2022-04-26 20:17:18'),
+(15, 13, 'baju dewasa', 20000, 0, 10, 1, 1, 18000, '2022-04-26 20:17:18', '2022-04-26 20:17:18'),
+(16, 13, 'baju dewasa', 20000, 0, 10, 2, 1, 18000, '2022-04-26 20:17:18', '2022-04-26 20:17:18'),
+(17, 14, 'baju dewasa', 20000, 15000, 10, 2, 0, 18000, '2022-05-24 11:28:57', '2022-05-24 11:28:57'),
+(18, 14, 'baju anak', 45000, 35000, 0, 1, 0, 45000, '2022-05-24 11:28:57', '2022-05-24 11:28:57'),
+(19, 15, 'baju anak', 45000, 35000, 0, 2, 0, 45000, '2022-05-24 11:54:07', '2022-05-24 11:54:07');
 
 -- --------------------------------------------------------
 
@@ -300,6 +310,7 @@ CREATE TABLE `produks` (
   `nama` varchar(100) NOT NULL,
   `jumlahSatuan` varchar(50) DEFAULT '-',
   `harga` double NOT NULL,
+  `modal` double NOT NULL DEFAULT 0,
   `diskon` int(3) NOT NULL DEFAULT 0,
   `expiredPromo` date DEFAULT NULL,
   `stok` int(25) NOT NULL,
@@ -312,10 +323,11 @@ CREATE TABLE `produks` (
 -- Dumping data for table `produks`
 --
 
-INSERT INTO `produks` (`id`, `idWarung`, `kode`, `nama`, `jumlahSatuan`, `harga`, `diskon`, `expiredPromo`, `stok`, `keterangan`, `created_at`, `updated_at`) VALUES
-(1, 1, 'PRDA9X4WPLZU', 'aqua botol', '450 mili', 5000, 0, NULL, 100, 'mineral aqua', '2022-04-20 21:56:32', '2022-04-23 20:25:32'),
-(5, 2, 'PRDSKWWK477C', 'baju dewasa', '1 bungkus', 20000, 10, '2022-04-27', 77, 'aasd', '2022-04-26 18:52:36', '2022-04-26 20:17:18'),
-(6, 2, 'PRD9FK0UTS6N', 'baju anak', 'asa', 45000, 0, NULL, -7, 'sadas', '2022-04-26 18:56:23', '2022-04-26 20:17:18');
+INSERT INTO `produks` (`id`, `idWarung`, `kode`, `nama`, `jumlahSatuan`, `harga`, `modal`, `diskon`, `expiredPromo`, `stok`, `keterangan`, `created_at`, `updated_at`) VALUES
+(1, 1, 'PRDA9X4WPLZU', 'aqua botol', '450 mili', 5000, 3500, 0, NULL, 100, 'mineral aqua', '2022-04-20 21:56:32', '2022-05-24 10:49:45'),
+(5, 2, 'PRDSKWWK477C', 'baju dewasa', '1 bungkus', 20000, 15000, 10, '2022-04-27', 75, 'aasd', '2022-04-26 18:52:36', '2022-05-24 11:28:57'),
+(6, 2, 'PRD9FK0UTS6N', 'baju anak', 'asa', 45000, 35000, 0, NULL, 97, 'sadas', '2022-04-26 18:56:23', '2022-05-24 11:54:07'),
+(7, 1, 'PRDW29QTLIYG', 'aqua botol', '1 botol', 4000, 2700, 0, NULL, 100, 'aqua botol 450 mili', '2022-05-24 10:48:47', '2022-05-24 10:48:47');
 
 -- --------------------------------------------------------
 
@@ -337,9 +349,7 @@ CREATE TABLE `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('vJYUBxWPoR8rAYDSGG4C9etcYPSve6rWJgfp2TyK', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.127 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiczhMcUVYTUpNa3hheXJ6ZWRHMUxBSkJkd1VtM1dHMGtGTTJpZ3YwQSI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6Mjc6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9sb2dpbiI7fX0=', 1651008469),
-('XSJFOFZSS6QYPTjrz6zp0gI0FHg6DlL9aaJ15Gk9', 2, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.127 Safari/537.36', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoiV0NjUm5EcmFHVmZ2M3JBTHBJSXlUZ2tFVUNDWlFVVGxUSXNQRHppUiI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6Mzg6Imh0dHA6Ly9sb2NhbGhvc3Q6ODAwMC9zeXMvYWRtaW4vcHJvZHVrIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6MjtzOjIxOiJwYXNzd29yZF9oYXNoX3NhbmN0dW0iO3M6NjA6IiQyeSQxMCQ0L05DQVo3bEloZGtlUFB1ZGkveE8uU0NmbVp0Y1ZGcUVlUWx4dUpHSGwxalJNM0daNkZoTyI7fQ==', 1651000774),
-('yh0YsxEiKOnqrcudmbvD5Feng5BAd6QYJV6pfS9X', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.127 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiYzRWRlNXSUswSXl1T2VmRTdpR2Z2SGUwYmFoZVVvbUNmUHZ6RVZBZyI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6Mjc6Imh0dHA6Ly9sb2NhbGhvc3Q6ODAwMC9sb2dpbiI7fX0=', 1651008698);
+('WPu4h9twqwRHHU4dJH9xIVUyEuyNLwVyrXoHJ1DV', 9, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/101.0.4951.67 Safari/537.36', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoiRUZiUVdkZWY4Ykw4ZzNlME9EMmJHMXNKanI0Mk4wOXUxSTdmc2luVCI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6ODQ6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9hdGFzYW4/aWRXYXJ1bmc9JmtleXdvcmQ9JnRhbmdnYWxBa2hpcj0mdGFuZ2dhbEF3YWw9MjAyMi0wNS0yNCI7fXM6NTA6ImxvZ2luX3dlYl81OWJhMzZhZGRjMmIyZjk0MDE1ODBmMDE0YzdmNThlYTRlMzA5ODlkIjtpOjk7czoyMToicGFzc3dvcmRfaGFzaF9zYW5jdHVtIjtzOjYwOiIkMnkkMTAkNC9OQ0FaN2xJaGRrZVBQdWRpL3hPLlNDZm1adGNWRnFFZVFseHVKR0hsMWpSTTNHWjZGaE8iO30=', 1653393344);
 
 -- --------------------------------------------------------
 
@@ -403,7 +413,13 @@ INSERT INTO `tikets` (`id`, `kode`, `isParkir`, `nomorPolisi`, `jenisKendaraan`,
 (343, 'XRT-PVGWPDZOA9V57AVY', 1, 'BE 0323 EB', 'Mobil', 7000, 74500, '2022-04-25 12:55:45', '2022-04-25 12:55:45'),
 (344, 'XRT-BGE6EGRAWT2JY2SV', 1, 'BE 0323 EB', 'Mobil', 7000, 74500, '2022-04-25 13:01:40', '2022-04-25 13:01:40'),
 (345, 'XRT-I4CW1A90LPHQ4BX4', 1, 'BE 0323 EB', 'Mobil', 7000, 74500, '2022-04-25 13:01:47', '2022-04-25 13:01:47'),
-(346, 'XRT-B48Q6UJ3J7GM7E13', 1, 'BE 0323 EB', 'Mobil', 7000, 74500, '2022-04-25 13:01:54', '2022-04-25 13:01:54');
+(346, 'XRT-B48Q6UJ3J7GM7E13', 1, 'BE 0323 EB', 'Mobil', 7000, 74500, '2022-04-25 13:01:54', '2022-04-25 13:01:54'),
+(347, 'XRT-ZSTDKEM0054I90Z8', 1, 'BE 0323 EB', 'Mobil', 7000, 22000, '2022-04-26 22:28:21', '2022-04-26 22:28:21'),
+(348, 'XRT-T3DZHVO4FRLDROQH', 1, 'BE 0323 EB', 'Mobil', 7000, 22000, '2022-04-26 22:30:09', '2022-04-26 22:30:09'),
+(349, 'XRT-5TM5RB6MSXIZUA21', 1, 'BE 0323 EB', 'Mobil', 7000, 22000, '2022-04-26 22:30:20', '2022-04-26 22:30:20'),
+(350, 'XRT-R9WW8L6XQKFY8591', 1, 'BE 0323 EB', 'Mobil', 7000, 22000, '2022-04-26 22:30:36', '2022-04-26 22:30:36'),
+(351, 'XRT-BD4CUT4RLVSUEGIX', 1, 'BE 0323 EB', 'Mobil', 7000, 22000, '2022-04-26 22:30:55', '2022-04-26 22:30:55'),
+(352, 'XRT-T1AR06TD0I26FBEH', 1, 'BE 0323 EB', 'Mobil', 7000, 22000, '2022-04-26 22:31:06', '2022-04-26 22:31:06');
 
 -- --------------------------------------------------------
 
@@ -425,7 +441,6 @@ CREATE TABLE `transaksi` (
 --
 
 INSERT INTO `transaksi` (`id`, `idWarung`, `kode`, `total`, `created_at`, `updated_at`) VALUES
-(1, 2, 'TRX-270420220BYQZ89USU18S', 36000, '2022-04-26 20:06:11', '2022-04-26 20:06:11'),
 (2, 2, 'TRX-27042022LOXI3NEQVUHCV', 36000, '2022-04-26 20:07:06', '2022-04-26 20:07:06'),
 (3, 2, 'TRX-27042022IO4JL8DAVRDVM', 36000, '2022-04-26 20:11:28', '2022-04-26 20:11:28'),
 (4, 2, 'TRX-27042022YNGSAVSZY', 36000, '2022-04-26 20:12:12', '2022-04-26 20:12:12'),
@@ -437,7 +452,9 @@ INSERT INTO `transaksi` (`id`, `idWarung`, `kode`, `total`, `created_at`, `updat
 (10, 2, 'TRX-27042022TK1HB1GCB', 90000, '2022-04-26 20:16:04', '2022-04-26 20:16:04'),
 (11, 2, 'TRX-27042022Z992AM3XW', 108000, '2022-04-26 20:16:30', '2022-04-26 20:16:30'),
 (12, 2, 'TRX-27042022JLKZPXV2E', 108000, '2022-04-26 20:16:54', '2022-04-26 20:16:54'),
-(13, 2, 'TRX-27042022WQWZI2O6Y', 144000, '2022-04-26 20:17:18', '2022-04-26 20:17:18');
+(13, 2, 'TRX-27042022WQWZI2O6Y', 144000, '2022-04-26 20:17:18', '2022-04-26 20:17:18'),
+(14, 2, 'TRX-240520220CLIPCVKJ', 85000, '2022-05-24 11:28:57', '2022-05-24 11:28:57'),
+(15, 2, 'TRX-24052022QCGZRQ5IT', 90000, '2022-05-24 11:54:07', '2022-05-24 11:54:07');
 
 -- --------------------------------------------------------
 
@@ -469,9 +486,10 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `address`, `role`, `idWarung`, `email`, `email_verified_at`, `password`, `two_factor_secret`, `two_factor_recovery_codes`, `two_factor_confirmed_at`, `remember_token`, `current_team_id`, `profile_photo_path`, `created_at`, `updated_at`) VALUES
-(2, 'admin', NULL, 1, 0, 'admin@gmail.com', NULL, '$2y$10$4/NCAZ7lIhdkePPudi/xO.SCfmZtcVFqEeQlxuJGHl1jRM3GZ6FhO', NULL, NULL, NULL, 'GqLX8gWWmTaG6spsaaCX43G25WawwIrADvPWDkwRzW9BuHozyqvEeueGjkW4', NULL, NULL, '2022-04-16 11:04:57', '2022-04-16 11:04:57'),
+(2, 'admin', NULL, 1, 0, 'admin@gmail.com', NULL, '$2y$10$4/NCAZ7lIhdkePPudi/xO.SCfmZtcVFqEeQlxuJGHl1jRM3GZ6FhO', NULL, NULL, NULL, 'PA3CgaodBhDJHSpGcoutYHx3qniU5Ls6lnMBzVR8z2v8vcPUWRzMd3CncsV6', NULL, NULL, '2022-04-16 11:04:57', '2022-04-16 11:04:57'),
 (3, 'Tiket', 'asasas', 2, 0, 'tiket@gmail.com', NULL, '$2y$10$ic4OiYzN03DUGMZRAsDORugt23m0UrBjt44HCrNskEwHATuPJB9Rm', NULL, NULL, NULL, NULL, NULL, NULL, '2022-04-17 07:11:47', '2022-04-23 22:43:49'),
-(6, 'adi', 'asa', 3, 2, 'adi@mail.com', NULL, '$2y$10$BmyLpcNm3W9c0BZlC95qMOvEhTJ0/ghH.eeg8cyfOO1LE7FDiCCHG', NULL, NULL, NULL, NULL, NULL, NULL, '2022-04-22 03:57:51', '2022-04-25 18:38:59');
+(6, 'adi', 'asa', 3, 2, 'adi@mail.com', NULL, '$2y$10$BmyLpcNm3W9c0BZlC95qMOvEhTJ0/ghH.eeg8cyfOO1LE7FDiCCHG', NULL, NULL, NULL, NULL, NULL, NULL, '2022-04-22 03:57:51', '2022-04-25 18:38:59'),
+(9, 'atasan', 'pringsewu', 0, 0, 'atasan@gmail.com', NULL, '$2y$10$4/NCAZ7lIhdkePPudi/xO.SCfmZtcVFqEeQlxuJGHl1jRM3GZ6FhO', NULL, NULL, NULL, 'B98ngJV5oJG4NyYuOj8r6qqRBXr8tYy0A12tgvTHKs9paxFiX3skG2L6FwfO', NULL, NULL, '2022-04-16 11:04:57', '2022-04-16 11:04:57');
 
 -- --------------------------------------------------------
 
@@ -598,13 +616,13 @@ ALTER TABLE `warungs`
 -- AUTO_INCREMENT for table `detail_tikets`
 --
 ALTER TABLE `detail_tikets`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=518;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=524;
 
 --
 -- AUTO_INCREMENT for table `detail_transaksi`
 --
 ALTER TABLE `detail_transaksi`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `failed_jobs`
@@ -640,25 +658,25 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT for table `produks`
 --
 ALTER TABLE `produks`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `tikets`
 --
 ALTER TABLE `tikets`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=347;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=353;
 
 --
 -- AUTO_INCREMENT for table `transaksi`
 --
 ALTER TABLE `transaksi`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `warungs`

@@ -55,11 +55,12 @@
 										<th class="text-center" scope="col">Produk</th>
 										<th class="text-center" scope="col">Jumlah_Satuan</th>
 										<th class="text-center" scope="col">Harga</th>
+										<th class="text-center" scope="col">Harga_Modal</th>
 										<th class="text-center" scope="col">Diskon</th>
 										<th class="text-center" scope="col">Tanggal_Akhir_Promo</th>
 										<th class="text-center" scope="col">Stok</th>
 										<th class="text-center" scope="col">Keterangan</th>
-										<th class="text-center" scope="col" colspan="4">Aksi</th>
+										<th class="text-center" scope="col" colspan="5">Aksi</th>
 									</tr>
 								</thead>
 								<tbody>
@@ -70,6 +71,7 @@
 											<td class="text-center">{{$d->nama}} <span class="badge rounded-pill bg-info text-dark">{{$d->adaPromo ? 'Promo' : ''}}</span></td>
 											<td class="text-center">{{$d->jumlahSatuan}}</td>
 											<td class="text-center">Rp.{{number_format($d->harga, 0,'.','.')}}</td>
+											<td class="text-center">Rp.{{number_format($d->modal, 0,'.','.')}}</td>
 											<td class="text-center">{{$d->diskon}} %</td>
 											<td class="text-center"><span class="badge rounded-pill bg-{{$d->expiredPromo !== null ? 'info': 'danger'}} text-dark">{{$d->expiredPromo === null ? 'Belum di atur' : ($d->adaPromo ? 'Berlaku sampai '.date('d-m-Y', strtotime($d->expiredPromo)) : 'Diskon berakhir' ) }}</span></td>
 											<td class="text-center">{{$d->stok}}</td>
@@ -124,6 +126,9 @@
 						</div>
 						<div class="col-12 mb-3">
 							<input type="number" name="o[harga]" class="form-control" id="harga" placeholder="Tulis harga" required />
+						</div>
+						<div class="col-12 mb-3">
+							<input type="number" name="o[modal]" class="form-control" id="modal" placeholder="Tulis harga modal" required />
 						</div>
 						<div class="col-12 mb-3">
 							<input type="number" name="o[stok]" class="form-control" id="stok" placeholder="Tulis stok" required />
@@ -233,6 +238,7 @@
 			$('#nama').val(data.nama);
 			$('#jumlahSatuan').val(data.jumlahSatuan);
 			$('#harga').val(data.harga);
+			$('#modal').val(data.modal);
 			$('#stok').val(data.stok);
 			$('#keterangan').val(data.keterangan);
 			$('#select-warung').val(data.idWarung).change();

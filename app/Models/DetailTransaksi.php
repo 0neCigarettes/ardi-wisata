@@ -14,6 +14,7 @@ class DetailTransaksi extends Model
 		'idTransaksi',
 		'namaProduk',
 		'harga',
+		'modal',
 		'diskon',
 		'jumlahBeli',
 		'adaDiskon',
